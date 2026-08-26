@@ -25,8 +25,10 @@ jobs:
         run: |
           PACKAGE_VERSION="$(node -p 'require("./package.json").version')"
           SERVER_VERSION="$(node -p 'require("./server.json").version')"
+          SOURCE_VERSION="$(sed -n 's/^export const SERVER_VERSION = "\([^"]*\)";$/\1/p' src/server.ts)"
           test "${GITHUB_REF_NAME}" = "v${PACKAGE_VERSION}"
           test "${SERVER_VERSION}" = "${PACKAGE_VERSION}"
+          test "${SOURCE_VERSION}" = "${PACKAGE_VERSION}"
       - run: npm test
       - run: npm run build
       - run: npm publish --access public

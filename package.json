@@ -1,6 +1,6 @@
 {
   "name": "classdojo-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unofficial local-first MCP server for safely importing and verifying ClassDojo student rosters from Excel workbooks",
   "mcpName": "io.github.Eason0in/classdojo-mcp",
   "type": "module",
