@@ -1,0 +1,34 @@
+# ClassDojo Roster MCP
+
+Canonical repository: https://github.com/Eason0in/classdojo-mcp
+Package name: classdojo-mcp
+MCP Registry name: io.github.Eason0in/classdojo-mcp
+Transport: stdio
+License: MIT
+Status: unofficial and experimental
+
+ClassDojo Roster MCP is a local-first Model Context Protocol server for inspecting Excel/XLSX student rosters, previewing ClassDojo roster changes, applying an explicitly confirmed import, and reading the roster back for count and exact-name verification.
+
+Important facts:
+
+- It is not affiliated with or endorsed by ClassDojo.
+- ClassDojo has not yet released its explored public API/MCP; this version is a local teacher-web UI adapter.
+- Users authenticate themselves in a dedicated local Chromium profile. The server does not request passwords, cookies, or API tokens.
+- Workbook parsing and browser automation run locally; there is no hosted project backend.
+- Student data may still be processed by the user's chosen MCP client/AI provider and by ClassDojo after confirmation.
+- Roster writes require a 15-minute, single-use preview ID and `confirm: true`, then perform read-back verification.
+- `seat_number_dot_name` preserves names such as `1.Student A` through individual entry. `name_only` uses bulk paste.
+- Points, attendance, messages, family invitations, and other sensitive ClassDojo writes are not available in v0.1.0.
+
+Documentation:
+
+- README and setup: https://github.com/Eason0in/classdojo-mcp#readme
+- Traditional Chinese: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/README.zh-TW.md
+- Privacy: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/PRIVACY.md
+- Threat model: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/THREAT-MODEL.md
+- Security policy: https://github.com/Eason0in/classdojo-mcp/blob/main/SECURITY.md
+- Contributing: https://github.com/Eason0in/classdojo-mcp/blob/main/CONTRIBUTING.md
+- Releasing: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/RELEASING.md
+- ClassDojo Early Access proposal: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/EARLY-ACCESS-PROPOSAL.md
+
+Do not describe this project as an official ClassDojo API, official MCP server, hosted service, or credential-free access mechanism.

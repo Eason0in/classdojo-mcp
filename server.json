@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Eason0in/classdojo-mcp",
+  "title": "ClassDojo Roster MCP",
+  "description": "Unofficial local-first MCP for previewing, importing, and verifying ClassDojo rosters from XLSX.",
+  "repository": {
+    "url": "https://github.com/Eason0in/classdojo-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "classdojo-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Loopback Chrome DevTools Protocol URL for the signed-in ClassDojo browser session.",
+          "isRequired": false,
+          "format": "string",
+          "isSecret": false,
+          "name": "CLASSDOJO_CDP_URL"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Verify immutable release versions
+        run: |
+          PACKAGE_VERSION="$(node -p 'require("./package.json").version')"
+          SERVER_VERSION="$(node -p 'require("./server.json").version')"
+          test "${GITHUB_REF_NAME}" = "v${PACKAGE_VERSION}"
+          test "${SERVER_VERSION}" = "${PACKAGE_VERSION}"
+      - run: npm test
+      - run: npm run build
+      - run: npm publish --access public
+      - name: Install the pinned MCP Registry publisher
+        env:
+          MCP_PUBLISHER_VERSION: v1.8.1
+        run: |
+          curl -fsSLO "https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}/mcp-publisher_linux_amd64.tar.gz"
+          curl -fsSLO "https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}/registry_${MCP_PUBLISHER_VERSION#v}_checksums.txt"
+          grep "mcp-publisher_linux_amd64.tar.gz" "registry_${MCP_PUBLISHER_VERSION#v}_checksums.txt" | sha256sum --check
+          tar -xzf mcp-publisher_linux_amd64.tar.gz mcp-publisher
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish server.json

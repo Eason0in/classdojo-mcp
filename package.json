@@ -1,0 +1,64 @@
+{
+  "name": "classdojo-mcp",
+  "version": "0.1.0",
+  "description": "Unofficial local-first MCP server for safely importing and verifying ClassDojo student rosters from Excel workbooks",
+  "mcpName": "io.github.Eason0in/classdojo-mcp",
+  "type": "module",
+  "bin": {
+    "classdojo-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "llms.txt",
+    "server.json"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm test && npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "classdojo",
+    "education",
+    "teacher",
+    "classroom",
+    "roster",
+    "student-roster",
+    "xlsx",
+    "ai-agent"
+  ],
+  "author": "Eason0in",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eason0in/classdojo-mcp.git"
+  },
+  "homepage": "https://github.com/Eason0in/classdojo-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/Eason0in/classdojo-mcp/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "fast-xml-parser": "^5.11.0",
+    "jszip": "^3.10.1",
+    "playwright-core": "^1.52.0",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.18",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}

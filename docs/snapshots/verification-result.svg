@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="560" viewBox="0 0 760 560" role="img" aria-labelledby="title desc">
+  <title id="title">Synthetic roster verification result</title><desc id="desc">Read-back verification passed for 24 synthetic students.</desc>
+  <rect width="760" height="560" fill="#f4f7fb"/><rect x="35" y="30" width="690" height="500" rx="20" fill="#fff" stroke="#dce3ee"/>
+  <g font-family="Arial, sans-serif"><text x="70" y="78" font-size="15" font-weight="700" fill="#087f5b">READ-BACK VERIFICATION</text><text x="70" y="122" font-size="30" font-weight="700" fill="#172033">Roster matches workbook</text><text x="70" y="150" font-size="17" fill="#64748b">Class 503 · checked after save</text>
+  <circle cx="113" cy="228" r="42" fill="#dcfce7"/><path d="M92 229l14 14 28-32" fill="none" stroke="#15803d" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><text x="175" y="218" font-size="18" fill="#64748b">Verified students</text><text x="175" y="258" font-size="36" font-weight="700" fill="#172033">24 / 24</text>
+  <rect x="70" y="312" width="185" height="95" rx="14" fill="#f8fafc" stroke="#e2e8f0"/><text x="94" y="347" font-size="15" fill="#64748b">Missing</text><text x="94" y="388" font-size="34" font-weight="700" fill="#087f5b">0</text>
+  <rect x="287" y="312" width="185" height="95" rx="14" fill="#f8fafc" stroke="#e2e8f0"/><text x="311" y="347" font-size="15" fill="#64748b">Unexpected</text><text x="311" y="388" font-size="34" font-weight="700" fill="#087f5b">0</text>
+  <rect x="504" y="312" width="181" height="95" rx="14" fill="#f8fafc" stroke="#e2e8f0"/><text x="528" y="347" font-size="15" fill="#64748b">Missing seats</text><text x="528" y="388" font-size="34" font-weight="700" fill="#087f5b">0</text>
+  <rect x="70" y="444" width="615" height="48" rx="12" fill="#ecfdf5"/><text x="94" y="475" font-size="15" font-weight="700" fill="#166534">Exact count and display-name comparison passed.</text></g>
+</svg>

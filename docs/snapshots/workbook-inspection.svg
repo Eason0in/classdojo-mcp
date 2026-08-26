@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Synthetic workbook inspection result</title>
+  <desc id="desc">ClassDojo Roster MCP detected two worksheets, three class blocks, and 72 synthetic students.</desc>
+  <rect width="1200" height="650" fill="#f4f7fb"/>
+  <rect x="55" y="50" width="1090" height="550" rx="22" fill="#fff" stroke="#dce3ee"/>
+  <text x="95" y="103" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#6246ea">CLASSDOJO ROSTER MCP · WORKBOOK INSPECTION</text>
+  <text x="95" y="150" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#172033">Workbook structure found</text>
+  <text x="95" y="180" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Synthetic workbook · no student data was transmitted</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="95" y="215" width="310" height="110" rx="14" fill="#fff" stroke="#e2e8f0"/><text x="120" y="252" font-size="16" fill="#64748b">Worksheets</text><text x="120" y="300" font-size="38" font-weight="700" fill="#172033">2</text>
+    <rect x="445" y="215" width="310" height="110" rx="14" fill="#fff" stroke="#e2e8f0"/><text x="470" y="252" font-size="16" fill="#64748b">Class blocks</text><text x="470" y="300" font-size="38" font-weight="700" fill="#172033">3</text>
+    <rect x="795" y="215" width="310" height="110" rx="14" fill="#fff" stroke="#e2e8f0"/><text x="820" y="252" font-size="16" fill="#64748b">Students detected</text><text x="820" y="300" font-size="38" font-weight="700" fill="#172033">72</text>
+    <rect x="95" y="360" width="1010" height="55" rx="12" fill="#f8fafc"/><text x="120" y="395" font-size="15" font-weight="700" fill="#64748b">WORKSHEET</text><text x="470" y="395" font-size="15" font-weight="700" fill="#64748b">DETECTED CLASS</text><text x="930" y="395" font-size="15" font-weight="700" fill="#64748b">ROWS</text>
+    <g font-size="17" fill="#172033"><text x="120" y="452">Grade 5</text><text x="470" y="452">Grade 5 Class 1</text><text x="940" y="452">24</text><text x="120" y="500">Grade 5</text><text x="470" y="500">Grade 5 Class 2</text><text x="940" y="500">24</text><text x="120" y="548">Grade 6</text><text x="470" y="548">Grade 6 Class 1</text><text x="940" y="548">24</text></g>
+  </g>
+</svg>
