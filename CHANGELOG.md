@@ -4,6 +4,13 @@ All notable changes are documented here. This project follows Semantic Versionin
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-08-26
+
+### Changed
+
+- Published through npm Trusted Publishing with GitHub OIDC provenance.
+- Added the live npm package status and installation instructions.
+
 ## [0.1.0] - 2026-08-26
 
 ### Added

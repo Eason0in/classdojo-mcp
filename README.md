@@ -1,6 +1,7 @@
 # ClassDojo Roster MCP
 
 [![CI](https://github.com/Eason0in/classdojo-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Eason0in/classdojo-mcp/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/classdojo-mcp?logo=npm)](https://www.npmjs.com/package/classdojo-mcp)
 [![Node.js 20+](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![MCP stdio](https://img.shields.io/badge/MCP-stdio-6f42c1)](https://modelcontextprotocol.io/)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -94,13 +95,13 @@ Keep the debugging port on loopback. Anyone who can reach a CDP endpoint may be 
 
 ## Install in an MCP client
 
-After the npm package is published, all clients use the same command:
+Install from the public npm package with the same command in every client:
 
 ```text
 npx -y classdojo-mcp
 ```
 
-Until then, contributors can clone this repository, run `npm ci && npm run build`, and replace the command with `node` plus the absolute path to `dist/cli.js`.
+Contributors can alternatively clone this repository, run `npm ci && npm run build`, and replace the command with `node` plus the absolute path to `dist/cli.js`.
 
 ### Claude Desktop and Cursor
 
