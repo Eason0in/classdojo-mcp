@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdtempSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -7,6 +7,7 @@ import { spawnSync } from "node:child_process";
 import { describe, expect, test } from "vitest";
 
 const verifier = fileURLToPath(new URL("../scripts/verify-release-asset.sh", import.meta.url));
+const releaseWorkflow = fileURLToPath(new URL("../.github/workflows/release.yml", import.meta.url));
 
 describe("release asset verification", () => {
   test("checks only the exact asset when an SBOM has the same prefix", () => {
@@ -28,5 +29,9 @@ describe("release asset verification", () => {
 
     expect(result.status, result.stderr).toBe(0);
     expect(result.stdout).toContain(`${assetName}: OK`);
+  });
+
+  test("does not run the npm release workflow for Registry recovery tags", () => {
+    expect(readFileSync(releaseWorkflow, "utf8")).toContain('- "!v*-registry"');
   });
 });
