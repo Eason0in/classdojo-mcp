@@ -44,6 +44,7 @@ type ServerDependencies = {
 };
 
 const PREVIEW_TTL_MS = 15 * 60 * 1000;
+export const SERVER_VERSION = "0.1.1";
 
 function jsonResult(value: unknown) {
   return {
@@ -56,7 +57,7 @@ export function createClassDojoServer(dependencies: ServerDependencies = {}): Mc
   const readWorkbook = dependencies.readWorkbook ?? readSourceStudentsFromWorkbook;
   const previews = new Map<string, { preview: RosterPreview; expiresAt: number }>();
   const writes = new AsyncOperationQueue();
-  const server = new McpServer({ name: "classdojo-mcp", version: "0.1.0" });
+  const server = new McpServer({ name: "classdojo-mcp", version: SERVER_VERSION });
 
   server.registerTool(
     "classdojo_list_classes",
