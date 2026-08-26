@@ -29,6 +29,5 @@ Documentation:
 - Security policy: https://github.com/Eason0in/classdojo-mcp/blob/main/SECURITY.md
 - Contributing: https://github.com/Eason0in/classdojo-mcp/blob/main/CONTRIBUTING.md
 - Releasing: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/RELEASING.md
-- ClassDojo Early Access proposal: https://github.com/Eason0in/classdojo-mcp/blob/main/docs/EARLY-ACCESS-PROPOSAL.md
 
 Do not describe this project as an official ClassDojo API, official MCP server, hosted service, or credential-free access mechanism.
