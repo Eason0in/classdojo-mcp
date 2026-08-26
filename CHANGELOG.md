@@ -4,6 +4,14 @@ All notable changes are documented here. This project follows Semantic Versionin
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-08-26
+
+### Changed
+
+- Upgraded the runtime schema dependency to Zod 4 and raised the MCP SDK minimum to the compatible 1.30 release line.
+- Upgraded the development toolchain to TypeScript 7, Vitest 4, and Node.js 26 type definitions.
+- Added tested MCP Registry recovery safeguards without changing the Node.js 20+ runtime requirement.
+
 ## [0.1.1] - 2026-08-26
 
 ### Changed
