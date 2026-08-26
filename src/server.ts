@@ -44,7 +44,7 @@ type ServerDependencies = {
 };
 
 const PREVIEW_TTL_MS = 15 * 60 * 1000;
-export const SERVER_VERSION = "0.1.1";
+export const SERVER_VERSION = "0.1.2";
 
 function jsonResult(value: unknown) {
   return {
