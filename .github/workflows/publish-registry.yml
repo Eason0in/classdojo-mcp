@@ -1,14 +1,13 @@
-name: Release
+name: Publish MCP Registry
 
 on:
-  push:
-    tags: ["v*"]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  publish:
+  publish-registry:
     runs-on: ubuntu-latest
     environment: release
     permissions:
@@ -20,18 +19,11 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
-      - run: npm ci
-      - name: Verify immutable release versions
+      - name: Verify npm release exists
         run: |
           PACKAGE_VERSION="$(node -p 'require("./package.json").version')"
-          SERVER_VERSION="$(node -p 'require("./server.json").version')"
-          SOURCE_VERSION="$(sed -n 's/^export const SERVER_VERSION = "\([^"]*\)";$/\1/p' src/server.ts)"
-          test "${GITHUB_REF_NAME}" = "v${PACKAGE_VERSION}"
-          test "${SERVER_VERSION}" = "${PACKAGE_VERSION}"
-          test "${SOURCE_VERSION}" = "${PACKAGE_VERSION}"
-      - run: npm test
-      - run: npm run build
-      - run: npm publish --access public
+          PUBLISHED_VERSION="$(npm view "classdojo-mcp@${PACKAGE_VERSION}" version)"
+          test "${PUBLISHED_VERSION}" = "${PACKAGE_VERSION}"
       - name: Install the pinned MCP Registry publisher
         env:
           MCP_PUBLISHER_VERSION: v1.8.1
