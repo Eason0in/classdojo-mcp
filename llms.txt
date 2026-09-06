@@ -1,4 +1,4 @@
-# ClassDojo Roster MCP
+# ClassDojo Classroom MCP
 
 Canonical repository: https://github.com/Eason0in/classdojo-mcp
 Package name: classdojo-mcp
@@ -7,7 +7,7 @@ Transport: stdio
 License: MIT
 Status: unofficial and experimental
 
-ClassDojo Roster MCP is a local-first Model Context Protocol server for inspecting Excel/XLSX student rosters, previewing ClassDojo roster changes, applying an explicitly confirmed import, and reading the roster back for count and exact-name verification.
+ClassDojo Classroom MCP is a local-first Model Context Protocol server for reviewable roster imports and exact classroom-skill synchronization with explicit confirmation and read-back verification.
 
 Important facts:
 
@@ -17,8 +17,10 @@ Important facts:
 - Workbook parsing and browser automation run locally; there is no hosted project backend.
 - Student data may still be processed by the user's chosen MCP client/AI provider and by ClassDojo after confirmation.
 - Roster writes require a 15-minute, single-use preview ID and `confirm: true`, then perform read-back verification.
+- Classroom-skill writes use the same preview and confirmation gate, detect post-preview changes, and verify names, categories, points, and icons.
+- `traditional_chinese_classroom_v1` is a public neutral preset with nine positive and six needs-work rules; the guided prompt asks the user whether to modify it before previewing.
 - `seat_number_dot_name` preserves names such as `1.Student A` through individual entry. `name_only` uses bulk paste.
-- Points, attendance, messages, family invitations, and other sensitive ClassDojo writes are not available in v0.1.0.
+- Awarding points, attendance, messages, family invitations, and other sensitive ClassDojo writes are not available.
 
 Documentation:
 

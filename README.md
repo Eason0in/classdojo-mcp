@@ -1,4 +1,4 @@
-# ClassDojo Roster MCP
+# ClassDojo Classroom MCP
 
 [![CI](https://github.com/Eason0in/classdojo-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Eason0in/classdojo-mcp/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/classdojo-mcp?logo=npm)](https://www.npmjs.com/package/classdojo-mcp)
@@ -6,7 +6,7 @@
 [![MCP stdio](https://img.shields.io/badge/MCP-stdio-6f42c1)](https://modelcontextprotocol.io/)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An **unofficial, local-first Model Context Protocol (MCP) server** for teachers who need to inspect Excel/XLSX student rosters, preview changes, import students into ClassDojo, and verify the saved roster afterward. It works with any MCP client that can launch a local stdio server, including Claude Desktop, Codex, Cursor, and VS Code.
+An **unofficial, local-first Model Context Protocol (MCP) server** for teachers who need to inspect and import Excel/XLSX student rosters or review, synchronize, and verify ClassDojo classroom skills. It works with any MCP client that can launch a local stdio server, including Claude Desktop, Codex, Cursor, and VS Code.
 
 > [!IMPORTANT]
 > This community project is not affiliated with, endorsed by, or supported by ClassDojo. It uses the signed-in ClassDojo teacher website through a local browser adapter because an official public ClassDojo API/MCP is not yet available. ClassDojo UI changes may require an adapter update.
@@ -30,10 +30,16 @@ Every write requires a fresh 15-minute preview ID plus `confirm: true`. After sa
 | `classdojo_list_classes` | No | List visible three-digit classes in the teacher session. |
 | `classdojo_inspect_workbook` | No | Scan every sheet for likely class, seat-number, and student-name columns. |
 | `classdojo_get_roster` | No | Read a current ClassDojo class roster. |
+| `classdojo_get_skills` | No | Read positive and needs-work skills with points and icons. |
 | `classdojo_get_ui_state` | No | Detect dialogs that may block roster work; it never dismisses them. |
 | `classdojo_preview_roster_import` | No | Compare workbook students with ClassDojo and create a short-lived preview ID. |
 | `classdojo_apply_roster_import` | Yes | Apply one preview with `confirm: true`, save, and read back for verification. |
 | `classdojo_verify_roster_against_workbook` | No | Compare expected and actual counts, missing names, and unexpected names. |
+| `classdojo_preview_skill_sync` | No | Compare a preset, source class, or inline rule list with target classes and create a short-lived preview ID. |
+| `classdojo_apply_skill_sync` | Yes | Exactly synchronize one skill preview with `confirm: true`, then read every class back. |
+| `classdojo_verify_skill_sync` | No | Independently compare current skills with the selected rule source. |
+
+The `classdojo_configure_skill_rules` MCP prompt guides a client through the built-in `traditional_chinese_classroom_v1` preset, asks whether the user wants changes, shows the complete final list, and keeps preview, approval, apply, and verification as separate steps.
 
 The workbook inspector does not assume fixed sheet names or column positions. It scans the whole workbook for common Chinese and English class/seat/name headers. Preview and verification then require an explicit non-empty `sheetNames` selection plus class mappings, preventing an Agent from silently combining duplicate or unrelated sheets.
 
@@ -53,6 +59,19 @@ The workbook inspector does not assume fixed sheet names or column positions. It
 | ![Synthetic roster import preview](docs/snapshots/roster-preview.svg) | ![Synthetic roster verification result](docs/snapshots/verification-result.svg) |
 
 All screenshots contain synthetic data only.
+
+## Safe classroom-skill workflow
+
+The built-in Traditional Chinese preset contains nine positive skills and six needs-work skills. It is public package data and uses a neutral preset ID; it does not contain a teacher name, account identifier, or student data.
+
+1. Start with the `classdojo_configure_skill_rules` prompt, or call `classdojo_get_skills` to inspect a source class.
+2. Review the complete preset and make any additions, removals, point changes, or icon changes.
+3. Call `classdojo_preview_skill_sync` with exactly one source: the built-in preset, a three-digit source class, or a complete inline skill list.
+4. Review every target's additions, updates, and removals.
+5. Only after human approval, call `classdojo_apply_skill_sync` with the one-time `previewId` and `confirm: true`.
+6. Call `classdojo_verify_skill_sync` for an independent comparison.
+
+Skill synchronization is an exact replacement. If a class changes after preview, the apply stops rather than overwriting the newer state. Matching classes are left unchanged, and a partial failure requires a fresh preview before retrying.
 
 ## Requirements
 
@@ -189,13 +208,27 @@ Apply only after reviewing the preview:
 
 Preview IDs expire after 15 minutes, live only in the running MCP process, and are consumed by the first apply attempt. This reduces accidental replay and duplicate imports. If one class fails, the result names the verified classes and the classes that can be retried after generating a new preview.
 
+Preview the built-in classroom-skill preset for multiple targets:
+
+```json
+{
+  "rulesSource": {
+    "type": "preset",
+    "presetId": "traditional_chinese_classroom_v1"
+  },
+  "targetClassNames": ["502", "503", "504"]
+}
+```
+
+Use `{"type":"class","className":"501"}` to copy a live source class. To modify the preset, send `{"type":"inline","skills":[...]}` with the complete final list; each rule requires `category`, `name`, and integer `points`, while `iconId` is optional. Positive points must be `0..5`, needs-work points must be `-5..0`, and names must be unique.
+
 ## Privacy and security
 
 - Workbook parsing and browser automation run locally on the teacher's computer.
 - The project does not run a hosted MCP service and does not persist credentials or student rosters.
 - Student names may still pass through the selected MCP client/AI provider. Review that provider's retention and privacy terms before using real student data.
 - Never attach real workbooks, student screenshots, browser profiles, cookies, or diagnostic logs containing personal data to a public issue.
-- Only roster import is writable in v0.1.0. Points, attendance, messaging, family invitations, and other ClassDojo features are intentionally unavailable.
+- Writable operations are limited to confirmed roster imports and confirmed classroom-skill synchronization. Awarding points, attendance, messaging, family invitations, and other ClassDojo features remain unavailable.
 
 See [docs/PRIVACY.md](docs/PRIVACY.md), [SECURITY.md](SECURITY.md), and the [threat model](docs/THREAT-MODEL.md).
 
@@ -213,7 +246,7 @@ See [docs/PRIVACY.md](docs/PRIVACY.md), [SECURITY.md](SECURITY.md), and the [thr
 
 ## Project status and roadmap
 
-Version `0.1.x` is experimental. The web UI adapter is intentionally isolated so a future official ClassDojo API can replace it without changing the public MCP tool workflow.
+Version `0.2.x` is experimental. The web UI adapter is intentionally isolated so a future official ClassDojo API can replace it without changing the public MCP tool workflow.
 
 Planned work:
 
