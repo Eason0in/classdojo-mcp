@@ -117,11 +117,13 @@ describe("MCP tool definitions", () => {
       mcpName: string;
     };
     const serverJson = JSON.parse(await readFile(new URL("../server.json", import.meta.url), "utf8")) as {
+      description: string;
       name: string;
       version: string;
       packages: Array<{ identifier: string; version: string; transport: { type: string } }>;
     };
 
+    expect(serverJson.description.length).toBeLessThanOrEqual(100);
     expect(serverJson.name).toBe(packageJson.mcpName);
     expect(serverJson.version).toBe(packageJson.version);
     expect(serverJson.packages).toContainEqual(
