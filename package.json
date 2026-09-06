@@ -1,7 +1,7 @@
 {
   "name": "classdojo-mcp",
-  "version": "0.1.2",
-  "description": "Unofficial local-first MCP server for safely importing and verifying ClassDojo student rosters from Excel workbooks",
+  "version": "0.2.0",
+  "description": "Unofficial local-first MCP server for safely managing ClassDojo rosters and classroom skills",
   "mcpName": "io.github.Eason0in/classdojo-mcp",
   "type": "module",
   "bin": {
@@ -32,6 +32,7 @@
     "classroom",
     "roster",
     "student-roster",
+    "classroom-skills",
     "xlsx",
     "ai-agent"
   ],
@@ -60,5 +61,8 @@
     "tsx": "^4.19.4",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "qs": "6.16.0"
   }
 }

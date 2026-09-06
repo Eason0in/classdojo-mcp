@@ -4,6 +4,19 @@ All notable changes are documented here. This project follows Semantic Versionin
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-03
+
+### Added
+
+- Built-in `traditional_chinese_classroom_v1` preset with nine positive and six needs-work skills.
+- Guided MCP prompt that asks users to review or modify the complete rule list before previewing changes.
+- Read, preview, exact-sync, and independent verification tools for ClassDojo classroom skills.
+- Fifteen-minute, single-use preview protection, explicit `confirm: true`, state-drift detection, and per-class read-back verification for skill writes.
+
+### Changed
+
+- Pinned the patched `qs` transitive dependency used by the MCP SDK's HTTP stack.
+
 ## [0.1.2] - 2026-08-26
 
 ### Changed

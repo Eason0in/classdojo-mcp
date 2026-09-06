@@ -1,6 +1,6 @@
 # Privacy
 
-ClassDojo Roster MCP is a local command-line process. It does not operate a hosted backend, analytics endpoint, telemetry collector, or account database.
+ClassDojo Classroom MCP is a local command-line process. It does not operate a hosted backend, analytics endpoint, telemetry collector, or account database.
 
 ## Data flow
 
@@ -10,7 +10,9 @@ ClassDojo Roster MCP is a local command-line process. It does not operate a host
 4. After explicit confirmation, selected student display names are entered into the user's signed-in local ClassDojo browser session.
 5. The server reads the roster back for verification.
 
-Preview content remains in process memory only, expires after 15 minutes, and is removed on the first apply attempt or when the process exits. The repository does not persist student rosters.
+Classroom-skill workflows follow the same boundary: the server reads rule names, points, categories, and icon IDs; holds a 15-minute preview in memory; writes only after `confirm: true`; and reads every target class back. The built-in preset is public package data and contains no teacher name, account identifier, or student data.
+
+Preview content remains in process memory only, expires after 15 minutes, and is removed on the first apply attempt or when the process exits. The repository does not persist student rosters or live classroom-rule snapshots.
 
 ## Important boundary
 

@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.Eason0in/classdojo-mcp",
-  "title": "ClassDojo Roster MCP",
-  "description": "Unofficial local-first MCP for previewing, importing, and verifying ClassDojo rosters from XLSX.",
+  "title": "ClassDojo Classroom MCP",
+  "description": "Unofficial local-first MCP for reviewable ClassDojo roster imports and classroom skill synchronization.",
   "repository": {
     "url": "https://github.com/Eason0in/classdojo-mcp",
     "source": "github"
   },
-  "version": "0.1.2",
+  "version": "0.2.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "classdojo-mcp",
-      "version": "0.1.2",
+      "version": "0.2.0",
       "transport": {
         "type": "stdio"
       },

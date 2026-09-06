@@ -6,6 +6,7 @@
 - student names, seat numbers, and class membership
 - local workbook and browser profile
 - authority to add students to a class
+- authority to edit, add, and remove classroom skills
 
 ## Trusted components
 
@@ -19,13 +20,15 @@
 | Risk | Mitigation |
 | --- | --- |
 | Accidental write | Preview ID, explicit `confirm: true`, one-time apply, and post-save verification. |
+| Stale skill overwrite | Snapshot every target during preview and stop if its current rules no longer match that snapshot. |
+| Partial skill synchronization | Update one class at a time, read it back, stop subsequent classes on failure, and require a new preview. |
 | Duplicate or partial import | Compare existing names, stop subsequent classes after a failure, and generate a new preview before retrying. |
 | Seat number stripped by bulk paste | Require an explicit name format; use individual entry for `seat_number_dot_name`. |
 | Workbook layout mis-detected | Inspect the entire workbook and require explicit sheet/class mappings before writing. |
 | Browser session takeover | Default to loopback CDP and recommend a dedicated browser profile. |
 | Sensitive data in support channels | Synthetic fixtures and explicit issue/PR prohibitions. |
 | Supply-chain compromise | CI verification, npm Trusted Publishing via OIDC, public provenance, and package allowlisting. |
-| ClassDojo UI change | Doctor/state checks, read-back verification, and an explicitly experimental UI-adapter status. |
+| ClassDojo UI change | Stable `data-name` controls, doctor/state checks, read-back verification, and an explicitly experimental UI-adapter status. |
 
 ## Out of scope
 
